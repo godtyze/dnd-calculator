@@ -1,0 +1,49 @@
+.drop-area {
+  max-width: 243px;
+  width: 100%;
+  min-height: 448px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+
+  &__tooltip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 127px;
+    text-align: center;
+  }
+
+  p {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    padding-top: 12px;
+    font-size: 12px;
+    line-height: 15px;
+    color: #6B7280;
+
+    span {
+      font-size: 14px;
+      line-height: 17px;
+      color: #5D5FEF;
+    }
+  }
+
+  .result {
+    opacity: 100%;
+  }
+
+  &.drag-over {
+    background-color: #F0F9FF;
+  }
+
+  &.empty {
+    border: 2px dashed #C4C4C4;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+

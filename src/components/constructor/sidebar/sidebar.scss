@@ -1,0 +1,128 @@
+.runtime,
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  max-width: 240px;
+  width: 100%;
+  min-height: 448px;
+}
+
+.runtime {
+  align-self: flex-end;
+
+  & .equals .btn {
+    cursor: pointer;
+  }
+}
+
+.equals__btn,
+.numbers,
+.operations,
+.result {
+  max-width: 240px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 4px;
+
+  &__wrapper {
+    max-width: 232px;
+    width: 100%;
+    background-color: #F3F4F6;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 44px;
+    text-align: end;
+    min-height: 44px;
+    padding-right: 4px;
+  }
+
+  &.dropped {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  &[draggable="true"] {
+    cursor: move;
+  }
+
+  &[draggable="false"] {
+    opacity: 50%;
+    cursor: not-allowed;
+  }
+
+  &[draggable="false"] .btn {
+    cursor: not-allowed;
+  }
+
+  &.drag-over {
+    border-top: 2px solid #5D5FEF;
+  }
+}
+
+.operations {
+  display: flex;
+  column-gap: 8px;
+}
+
+.numbers {
+  padding: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.equals__btn {
+  border: none;
+  background-color: white;
+  cursor: inherit;
+
+  &-wrapper {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    color: #FFFFFF;
+    border-radius: 4px;
+    background-color: #5D5FEF;
+    padding: 25px 111px;
+  }
+}
+
+.equals {
+  &.drag-over {
+    border-top: 2px solid #5D5FEF;
+  }
+
+  &[draggable="false"] .equals__btn-wrapper {
+    opacity: 50%;
+  }
+
+  &[draggable="false"] .equals__btn {
+    cursor: not-allowed;
+  }
+
+  &[draggable="true"] {
+    cursor: move;
+  }
+
+  &.dropped {
+    box-shadow: none;
+    border-radius: 0;
+
+    & .equals__btn {
+      box-shadow: none;
+    }
+  }
+}
+
+.result {
+ &.drag-over {
+   border: none;
+ }
+}
+
+.numbers .btn:nth-child(10) {
+  width: 152px;
+}

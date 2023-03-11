@@ -1,0 +1,16 @@
+.constructor {
+  display: flex;
+  column-gap: 56px;
+  max-width: calc(243px + 56px + 240px);
+  width: 100%;
+  user-select: none;
+
+  & .btn:hover {
+    border: 1px solid #E2E3E5;
+  }
+
+  & .equals__btn:hover {
+    border: none;
+  }
+}
+
