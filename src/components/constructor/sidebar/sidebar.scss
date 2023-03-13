@@ -13,6 +13,10 @@
 
   & .equals .btn {
     cursor: pointer;
+
+    &:hover {
+      border: none;
+    }
   }
 }
 

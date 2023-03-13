@@ -1,4 +1,4 @@
-export const isConstructorMode = (mode: string): boolean => {
+export const isConstructorMode = (mode: string): mode is 'constructor' => {
   return mode === 'constructor';
 };
 
