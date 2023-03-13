@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {ReactComponent as Eye} from '../../assets/eye.svg';
 import {ReactComponent as Vector} from '../../assets/Vector.svg';
 import Button from '../UI/button/button';
@@ -12,14 +12,18 @@ const SwitchMode: React.FC = () => {
   const mode = useAppSelector(selectMode);
   const {setMode, setInitialState} = useActions();
 
-  const onClickConstructor = useCallback(() => {
+  const onClickConstructor = () => {
+    if (isConstructorMode(mode)) return;
+
     setMode('constructor');
     setInitialState();
-  }, []);
+  };
 
-  const onClickRuntime = useCallback(() => {
+  const onClickRuntime = () => {
+    if (!isConstructorMode(mode)) return;
+
     setMode('runtime');
-  }, []);
+  };
 
   return (
     <div className='switch-mode'>
