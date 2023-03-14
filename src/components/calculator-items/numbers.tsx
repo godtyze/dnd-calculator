@@ -22,6 +22,8 @@ const Numbers: React.FC<CalculatorItemProps> = ({
   const operation = useAppSelector(selectOperation);
   const {setLeftOperand, setRightOperand} = useActions();
   const onNumberClick = (value: number) => {
+    if (isConstructorMode(mode)) return;
+
     if (operation) {
       setRightOperand(value);
     } else {
@@ -30,6 +32,8 @@ const Numbers: React.FC<CalculatorItemProps> = ({
   };
 
   const onQuoteClick = () => {
+    if (isConstructorMode(mode)) return;
+
     if (operation) {
       setRightOperand(',');
     } else {
@@ -48,7 +52,7 @@ const Numbers: React.FC<CalculatorItemProps> = ({
     >
       {numbers.map(number =>
         <Button key={number}
-                onClick={isConstructorMode(mode) ? undefined : () => onNumberClick(number)}
+                onClick={() => onNumberClick(number)}
                 className={draggable ? 'btn draggable number' : 'btn number'}
         >
           {number}
@@ -56,7 +60,7 @@ const Numbers: React.FC<CalculatorItemProps> = ({
       )}
       <Button
         className={draggable ? 'btn draggable number' : 'btn number'}
-        onClick={isConstructorMode(mode) ? undefined : onQuoteClick}
+        onClick={onQuoteClick}
       >,
       </Button>
     </div>

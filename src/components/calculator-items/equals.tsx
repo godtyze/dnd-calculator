@@ -31,6 +31,8 @@ const Equals: React.FC<CalculatorItemProps> = ({
   const {setOutput} = useActions()
 
   const onClick = () => {
+    if (isConstructorMode(mode)) return;
+
     const leftFinal = leftOperand.replace(',', '.');
     const rightFinal = rightOperand.replace(',', '.');
     const result = calculate(+leftFinal, +rightFinal, operation);
@@ -54,7 +56,7 @@ const Equals: React.FC<CalculatorItemProps> = ({
     >
       <Button
         className={draggable && dropAreaItems.includes(item) ? 'btn equals__btn dropped' : 'btn equals__btn'}
-        onClick={isConstructorMode(mode) ? undefined : onClick}
+        onClick={onClick}
       >
         <div className='equals__btn-wrapper'>=</div>
       </Button>

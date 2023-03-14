@@ -23,6 +23,7 @@ const Operations: React.FC<CalculatorItemProps> = ({
   const {setOperation} = useActions();
 
   const onClick = (operation: OperationType) => {
+    if (isConstructorMode(mode)) return;
     setOperation(operation);
   }
 
@@ -38,7 +39,7 @@ const Operations: React.FC<CalculatorItemProps> = ({
     >
       {Object.values(operations).map(operation =>
         <Button key={operation}
-                onClick={isConstructorMode(mode) ? undefined : () => onClick(operation)}
+                onClick={() => onClick(operation)}
                 className={draggable ? 'btn draggable' : 'btn'}
                 active={operation === currentOperation}
         >
