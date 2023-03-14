@@ -8,18 +8,6 @@
   min-height: 448px;
 }
 
-.runtime {
-  align-self: flex-end;
-
-  & .equals .btn {
-    cursor: pointer;
-
-    &:hover {
-      border: none;
-    }
-  }
-}
-
 .equals__btn,
 .numbers,
 .operations,

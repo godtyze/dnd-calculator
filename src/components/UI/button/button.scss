@@ -13,8 +13,9 @@
     cursor: move;
   }
 
-  &:hover {
-    border: 1px solid #5D5FEF;
+  &.active {
+    background-color: #5D5FEF;
+    color: #FFFFFF;
   }
 }
 

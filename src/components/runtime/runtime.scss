@@ -1,0 +1,20 @@
+.runtime {
+  align-self: flex-end;
+
+  & .equals .btn {
+    cursor: pointer;
+
+    &:hover {
+      border: none;
+    }
+  }
+
+  & .btn:hover {
+    border: 1px solid #5D5FEF;
+  }
+
+  & .btn:active  {
+    background-color: #5D5FEF;
+    color: #FFFFFF;
+  }
+}

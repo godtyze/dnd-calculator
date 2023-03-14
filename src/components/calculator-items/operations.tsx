@@ -3,7 +3,7 @@ import {operations} from '../../constants';
 import Button from '../UI/button/button';
 import {CalculatorItemProps, OperationType} from '../../models';
 import {useAppSelector} from '../../hooks/redux';
-import {selectMode} from '../../store/slices/calculatorSlice';
+import {selectMode, selectOperation} from '../../store/slices/calculatorSlice';
 import {isConstructorMode} from '../../utils';
 import {useActions} from '../../hooks/useActions';
 
@@ -19,7 +19,8 @@ const Operations: React.FC<CalculatorItemProps> = ({
                                                      className
                                                    }) => {
   const mode = useAppSelector(selectMode);
-  const {setOperation} = useActions()
+  const currentOperation = useAppSelector(selectOperation);
+  const {setOperation} = useActions();
 
   const onClick = (operation: OperationType) => {
     setOperation(operation);
@@ -38,7 +39,9 @@ const Operations: React.FC<CalculatorItemProps> = ({
       {Object.values(operations).map(operation =>
         <Button key={operation}
                 onClick={isConstructorMode(mode) ? undefined : () => onClick(operation)}
-                className={draggable ? 'btn draggable' : 'btn'}>
+                className={draggable ? 'btn draggable' : 'btn'}
+                active={operation === currentOperation}
+        >
           {operation}
         </Button>
       )}

@@ -36,9 +36,10 @@ const Result: React.FC<CalculatorItemProps> = ({
          onDoubleClick={onDoubleClick ? () => onDoubleClick(item) : undefined}
     >
       <div draggable={false} className="result__wrapper">
-        {!operation && leftOperand}
-        {operation && rightOperand}
         {!leftOperand && !rightOperand && output}
+        {!operation && leftOperand}
+        {operation && !rightOperand && leftOperand}
+        {operation && rightOperand}
       </div>
     </div>
   );

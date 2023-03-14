@@ -67,6 +67,9 @@ const calculatorSlice = createSlice({
       state.rightOperand += action.payload;
     },
     setOperation: (state, action: PayloadAction<OperationType>) => {
+      if (state.output && !state.leftOperand) {
+        state.leftOperand = `${state.output}`;
+      }
       state.operation = action.payload;
     },
     setOutput: (state, action: PayloadAction<number | string>) => {

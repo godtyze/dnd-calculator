@@ -38,10 +38,7 @@ const Equals: React.FC<CalculatorItemProps> = ({
     if (isNaN(result) || result === Infinity) {
       setOutput('Не определено');
     } else {
-      setOutput((+calculate(+leftFinal, +rightFinal, operation)
-        .toFixed(6))
-        .toString()
-        .replace('.', ','));
+      setOutput((+result.toFixed(6)).toString().replace('.', ','));
     }
   }
 

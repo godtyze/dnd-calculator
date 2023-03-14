@@ -5,11 +5,12 @@ interface ButtonProps {
   children: React.ReactNode | string;
   onClick?: () => void;
   draggable?: boolean;
+  active?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({children, ...rest}) => {
+const Button: React.FC<ButtonProps> = ({children, active, className, ...rest}) => {
   return (
-    <button {...rest}>
+    <button className={active ? className + ' active' : className} {...rest}>
       {children}
     </button>
   );
