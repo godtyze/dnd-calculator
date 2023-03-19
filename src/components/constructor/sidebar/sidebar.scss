@@ -49,8 +49,12 @@
     cursor: not-allowed;
   }
 
-  &.drag-over {
+  &.drag-over-top {
     border-top: 2px solid #5D5FEF;
+  }
+
+  &.drag-over-bottom {
+    border-bottom: 2px solid #5D5FEF;
   }
 }
 
@@ -83,8 +87,12 @@
 }
 
 .equals {
-  &.drag-over {
+  &.drag-over-top {
     border-top: 2px solid #5D5FEF;
+  }
+
+  &.drag-over-bottom {
+    border-bottom: 2px solid #5D5FEF;
   }
 
   &[draggable="false"] .equals__btn-wrapper {
@@ -110,7 +118,7 @@
 }
 
 .result {
- &.drag-over {
+  &.drag-over-bottom, &.drag-over-top {
    border: none;
  }
 }

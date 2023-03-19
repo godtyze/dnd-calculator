@@ -33,13 +33,21 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
     }
   };
 
-  const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const onDragOver = (e: React.DragEvent<HTMLDivElement>, idx: number) => {
     e.preventDefault();
-    e.currentTarget.classList.add('drag-over');
+    if (currentDragItem) {
+      const currentIndex = dropAreaItems.findIndex(el => el.name === currentDragItem.name);
+
+      if (currentIndex >= idx) {
+        e.currentTarget.classList.add('drag-over-top');
+      } else {
+        e.currentTarget.classList.add('drag-over-bottom');
+      }
+    }
   };
 
   const onDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    e.currentTarget.classList.remove('drag-over');
+    e.currentTarget.classList.remove('drag-over-top', 'drag-over-bottom');
   };
 
   const onDoubleClick = (item: ICalculatorItem) => {
@@ -50,7 +58,7 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
   const onDrop = (e: React.DragEvent<HTMLDivElement>, item: ICalculatorItem) => {
     e.preventDefault();
     e.stopPropagation();
-    e.currentTarget.classList.remove('drag-over');
+    e.currentTarget.classList.remove('drag-over-top', 'drag-over-bottom');
     const currentIndex = dropAreaItems.findIndex(item => item.name === currentDragItem!.name);
     const dropIndex = dropAreaItems.findIndex(el => el.name === item.name);
     setDropAreaItemOnDrop({currentIndex, dropIndex});
@@ -58,7 +66,7 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
 
   return (
     <>
-      {items.map(item => {
+      {items.map((item, idx) => {
         switch (item.name) {
           case 'result':
             return <Result
@@ -71,7 +79,7 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
               onDragEnd={isConstructorMode(mode) ? onDragEnd : undefined}
               onDrop={isConstructorMode(mode) ? onDrop : undefined}
               onDragLeave={isConstructorMode(mode) ? onDragLeave : undefined}
-              onDragOver={isConstructorMode(mode) ? onDragOver : undefined}
+              onDragOver={isConstructorMode(mode) ? (e) => onDragOver(e, idx) : undefined}
               className={dropAreaItems.includes(item) && isConstructorMode(mode)
                 ? 'result dropped' : 'result'}
             />
@@ -86,7 +94,7 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
               onDragEnd={isConstructorMode(mode) ? onDragEnd : undefined}
               onDrop={isConstructorMode(mode) ? onDrop : undefined}
               onDragLeave={isConstructorMode(mode) ? onDragLeave : undefined}
-              onDragOver={isConstructorMode(mode) ? onDragOver : undefined}
+              onDragOver={isConstructorMode(mode) ? (e) => onDragOver(e, idx) : undefined}
               className={dropAreaItems.includes(item) && isConstructorMode(mode)
                 ? 'operations dropped' : 'operations'}
             />
@@ -101,7 +109,7 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
               onDragEnd={isConstructorMode(mode) ? onDragEnd : undefined}
               onDrop={isConstructorMode(mode) ? onDrop : undefined}
               onDragLeave={isConstructorMode(mode) ? onDragLeave : undefined}
-              onDragOver={isConstructorMode(mode) ? onDragOver : undefined}
+              onDragOver={isConstructorMode(mode) ? (e) => onDragOver(e, idx) : undefined}
               className={dropAreaItems.includes(item) && isConstructorMode(mode)
                 ? 'numbers dropped' : 'numbers'}
             />
@@ -116,7 +124,7 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
               onDragEnd={isConstructorMode(mode) ? onDragEnd : undefined}
               onDrop={isConstructorMode(mode) ? onDrop : undefined}
               onDragLeave={isConstructorMode(mode) ? onDragLeave : undefined}
-              onDragOver={isConstructorMode(mode) ? onDragOver : undefined}
+              onDragOver={isConstructorMode(mode) ? (e) => onDragOver(e, idx) : undefined}
               className={dropAreaItems.includes(item) && isConstructorMode(mode)
                 ? 'equals dropped' : 'equals'}
             />
