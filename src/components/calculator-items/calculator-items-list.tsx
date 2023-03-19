@@ -38,7 +38,7 @@ const CalculatorItemsList: React.FC<CalculatorItemsListProps> = ({items}) => {
     if (currentDragItem) {
       const currentIndex = dropAreaItems.findIndex(el => el.name === currentDragItem.name);
 
-      if (currentIndex >= idx) {
+      if (currentIndex >= idx || currentIndex === -1) {
         e.currentTarget.classList.add('drag-over-top');
       } else {
         e.currentTarget.classList.add('drag-over-bottom');
