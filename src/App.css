@@ -18,6 +18,6 @@
   display: flex;
   flex-direction: column;
   row-gap: 30px;
-  max-width: calc(243px + 56px + 240px);
+  max-width: 539px;
   width: 100%;
 }
